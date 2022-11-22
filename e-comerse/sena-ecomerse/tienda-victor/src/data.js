@@ -25,8 +25,8 @@ const data = {
       descripcion: 'Camiseta de alta calidad',
     },
     {
-      nombre: 'NIKE pamtaloneta pequeña',
-      ficha: 'nike-pamtaloneta-pequeña',
+      nombre: 'NIKE pantaloneta pequeña',
+      ficha: 'nike-pantaloneta-pequeña',
       categoria: 'pantalonetas',
       imagen: '/images/p3.jpg',
       precio: 45000,
