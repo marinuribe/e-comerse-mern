@@ -8,12 +8,12 @@ import { LinkContainer } from 'react-router-bootstrap';
 function App() {
   return (
     <BrowserRouter>
-      <div className='d-flex flex-column site-container'>
+      <div className="d-flex flex-column site-container">
         <header>
           <Navbar bg="dark" variant="dark">
             <Container>
               <LinkContainer to="/">
-                <Navbar.Brand>Tienda de Victor</Navbar.Brand>
+                <Navbar.Brand>TIENDA DE VICTOR</Navbar.Brand>
               </LinkContainer>
             </Container>
           </Navbar>
@@ -22,13 +22,16 @@ function App() {
         <main>
           <Container>
             <Routes>
-              <Route path="/producto/:ficha" element={<ProductScreen />}></Route>
+              <Route
+                path="/producto/:ficha"
+                element={<ProductScreen />}
+              ></Route>
               <Route path="/" element={<HomeScreen />}></Route>
             </Routes>
           </Container>
         </main>
         <footer>
-          <div className='text-center'>Todos los derechos reservados</div>
+          <div className="text-center">Todos los derechos reservados</div>
         </footer>
       </div>
     </BrowserRouter>
