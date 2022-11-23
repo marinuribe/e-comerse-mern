@@ -6,6 +6,14 @@ const app = express();
 app.get('/api/productos', (req, res) => {
   res.send(data.productos);
 });
+app.get('/api/productos/ficha/:ficha', (req, res) => {
+  const producto = data.productos.find((x) => x.ficha === req.params.ficha);
+  if (producto) {
+    res.send(producto);
+  } else {
+    res.status(404).send({ message: 'Producto no encontrado' });
+  }
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

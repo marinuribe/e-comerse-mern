@@ -4,6 +4,10 @@ import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Producto from '../components/Producto';
+import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { getError } from './utils';
 /* import data from '../data'; */
 
 const reducer = (state, action) => {
@@ -26,8 +30,7 @@ function HomeScreen() {
       productos: [],
       loading: true,
       error: '',
-    }
-  );
+    });
   // const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +39,7 @@ function HomeScreen() {
         const result = await axios.get('/api/productos');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err)});
       }
 
       // setProducts(result.data);
@@ -45,12 +48,15 @@ function HomeScreen() {
   }, []);
   return (
     <div>
+      <Helmet>
+        <title>Tienda de Victor</title>
+      </Helmet>
       <h1>Productos destacados</h1>
       <div className="productos">
         {loading ? (
-          <div>Cargando...</div>
+          <LoadingBox />
         ) : error ? (
-          <div>{error}</div>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
             {productos.map((producto) => (
