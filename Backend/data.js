@@ -1,6 +1,7 @@
 const data = {
   productos: [
     {
+      _id: '1',
       nombre: 'NIKE Camiseta pequeña',
       ficha: 'nike-camiseta-pequeña',
       categoria: 'camisetas',
@@ -13,6 +14,7 @@ const data = {
       descripcion: 'Camiseta de alta calidad',
     },
     {
+      _id: '2',
       nombre: 'Adidas camiseta deportiva',
       ficha: 'adidas-camiseta-deportiva',
       categoria: 'camisetas',
@@ -25,6 +27,7 @@ const data = {
       descripcion: 'Camiseta de alta calidad',
     },
     {
+      _id: '3',
       nombre: 'NIKE pantaloneta pequeña',
       ficha: 'nike-pantaloneta-pequeña',
       categoria: 'pantalonetas',
@@ -37,6 +40,7 @@ const data = {
       descripcion: 'Pantaloneta de alta calidad',
     },
     {
+      _id: '4',
       nombre: 'Adidas pantaloneta pequeña',
       ficha: 'adidas-pantaloneta-pequeña',
       categoria: 'pantalonetas',

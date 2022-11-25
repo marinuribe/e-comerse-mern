@@ -52,10 +52,18 @@ function ProductScreen() {
   }, [ficha]);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const addToCartHandler = () => {
+  const { cart } = state;
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === producto._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/productos/${producto._id}`);
+    if (data.enInventario < quantity) {
+      window.alert('Lo sentimos, por ahora este producto no esta en stock');
+      return;
+    }
     ctxDispatch({
       type: 'CART_ADD_ITEM',
-      payload: { ...producto, quantity: 1 },
+      payload: { ...producto, quantity },
     });
   };
   return loading ? (
