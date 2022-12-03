@@ -20,7 +20,7 @@ const data = {
       /* _id: '1', */
       nombre: 'NIKE Camiseta pequeña',
       ficha: 'nike-camiseta-pequeña',
-      categoria: 'camisetas',
+      category: 'camisetas',
       imagen: '/images/p1.jpg',
       precio: 70000,
       enInventario: 10,
@@ -33,7 +33,7 @@ const data = {
       /* _id: '2', */
       nombre: 'Adidas camiseta deportiva',
       ficha: 'adidas-camiseta-deportiva',
-      categoria: 'camisetas',
+      category: 'camisetas',
       imagen: '/images/p2.jpg',
       precio: 60000,
       enInventario: 20,
@@ -46,7 +46,7 @@ const data = {
       /* _id: '3', */
       nombre: 'NIKE pantaloneta pequeña',
       ficha: 'nike-pantaloneta-pequeña',
-      categoria: 'pantalonetas',
+      category: 'pantalonetas',
       imagen: '/images/p3.jpg',
       precio: 45000,
       enInventario: 15,
@@ -59,7 +59,7 @@ const data = {
       /* _id: '4', */
       nombre: 'Adidas pantaloneta pequeña',
       ficha: 'adidas-pantaloneta-pequeña',
-      categoria: 'pantalonetas',
+      category: 'pantalonetas',
       imagen: '/images/p4.jpg',
       precio: 35000,
       enInventario: 0,

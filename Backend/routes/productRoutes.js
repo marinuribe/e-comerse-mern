@@ -10,6 +10,28 @@ productRouter.get('/', async (req, res) => {
   res.send(productos);
 });
 
+productRouter.post(
+  '/',
+  isAuth,
+  empleado,
+  expressAsyncHandler(async (req, res) => {
+    const newProduct = new Producto({
+      nombre: 'sample name ' + Date.now(),
+      ficha: 'sample-name-' + Date.now(),
+      imagen: '/images/p1.jpg',
+      precio: 0,
+      category: 'sample category',
+      marca: 'sample brand',
+      enInventario: 0,
+      puntaje: 0,
+      reviews: 0,
+      descripcion: 'sample description',
+    });
+    const producto = await newProduct.save();
+    res.send({ message: 'Product Created', producto });
+  })
+);
+
 const PAGE_SIZE = 3;
 
 productRouter.get(

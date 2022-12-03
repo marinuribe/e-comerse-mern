@@ -120,12 +120,12 @@ export default function SearchScreen() {
 
   const getFilterUrl = (filter) => {
     const filterPage = filter.page || page;
-    const filterCategory = filter.category || category;
+    const filtercategory = filter.category || category;
     const filterQuery = filter.query || query;
     const filterRating = filter.puntaje || puntaje;
     const filterPrice = filter.precio || precio;
     const sortOrder = filter.order || order;
-    return `/search?category=${filterCategory}&query=${filterQuery}&precio=${filterPrice}&puntaje=${filterRating}&order=${sortOrder}&page=${filterPage}`;
+    return `/search?category=${filtercategory}&query=${filterQuery}&precio=${filterPrice}&puntaje=${filterRating}&order=${sortOrder}&page=${filterPage}`;
   };
   return (
     <div>
