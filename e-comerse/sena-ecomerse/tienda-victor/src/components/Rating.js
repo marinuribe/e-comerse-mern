@@ -1,5 +1,5 @@
 function Puntaje(props) {
-  const { puntaje, reviews } = props;
+  const { puntaje, numReviews, caption } = props;
   return (
     <div className="puntaje">
       <span>
@@ -57,7 +57,11 @@ function Puntaje(props) {
           }
         />
       </span>
-      <span> {reviews} Reseñas </span>
+      {caption ? (
+        <span>{caption}</span>
+      ) : (
+        <span>{' ' + numReviews + ' Reseñas'}</span>
+      )}
     </div>
   );
 }

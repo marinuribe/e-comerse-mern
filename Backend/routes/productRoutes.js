@@ -9,6 +9,85 @@ productRouter.get('/', async (req, res) => {
   res.send(productos);
 });
 
+const PAGE_SIZE = 3;
+productRouter.get(
+  '/search',
+  expressAsyncHandler(async (req, res) => {
+    const { query } = req;
+    const pageSize = query.pageSize || PAGE_SIZE;
+    const page = query.page || 1;
+    const category = query.category || '';
+    const precio = query.precio || '';
+    const puntaje = query.puntaje || '';
+    const order = query.order || '';
+    const searchQuery = query.query || '';
+
+    const queryFilter =
+      searchQuery && searchQuery !== 'all'
+        ? {
+            nombre: {
+              $regex: searchQuery,
+              $options: 'i',
+            },
+          }
+        : {};
+    const categoryFilter = category && category !== 'all' ? { category } : {};
+    const ratingFilter =
+      rating && rating !== 'all'
+        ? {
+            rating: {
+              $gte: Number(rating),
+            },
+          }
+        : {};
+    const priceFilter =
+      precio && precio !== 'all'
+        ? {
+            // 1-50
+            precio: {
+              $gte: Number(precio.split('-')[0]),
+              $lte: Number(precio.split('-')[1]),
+            },
+          }
+        : {};
+    const sortOrder =
+      order === 'featured'
+        ? { featured: -1 }
+        : order === 'lowest'
+        ? { precio: 1 }
+        : order === 'highest'
+        ? { precio: -1 }
+        : order === 'toprated'
+        ? { puntaje: -1 }
+        : order === 'newest'
+        ? { createdAt: -1 }
+        : { _id: -1 };
+
+    const productos = await Producto.find({
+      ...queryFilter,
+      ...categoryFilter,
+      ...priceFilter,
+      ...ratingFilter,
+    })
+      .sort(sortOrder)
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+
+    const countProducts = await Producto.countDocuments({
+      ...queryFilter,
+      ...categoryFilter,
+      ...priceFilter,
+      ...ratingFilter,
+    });
+    res.send({
+      productos,
+      countProducts,
+      page,
+      pages: Math.ceil(countProducts / pageSize),
+    });
+  })
+);
+
 productRouter.get(
   '/categories',
   expressAsyncHandler(async (req, res) => {
