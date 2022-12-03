@@ -31,3 +31,11 @@ export const isAuth = (req, res, next) => {
     res.status(401).send({ message: 'El token no existe' });
   }
 };
+
+export const empleado = (req, res, next) => {
+  if (req.user && req.user.empleado) {
+    next();
+  } else {
+    res.status(401).send({ message: 'Invalid Admin Token' });
+  }
+};
