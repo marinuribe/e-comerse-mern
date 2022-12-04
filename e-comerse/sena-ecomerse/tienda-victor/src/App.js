@@ -29,6 +29,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import DashboardScreen from './screens/DashboardScreen';
 import AdminRoute from './components/AdminRoute';
 import ProductListScreen from './screens/ProductListScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -119,13 +120,13 @@ function App() {
                         <NavDropdown.Item>Panel de control</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/productos">
-                        <NavDropdown.Item>Products</NavDropdown.Item>
+                        <NavDropdown.Item>Productos</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/orders">
-                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                        <NavDropdown.Item>Ordenes</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/users">
-                        <NavDropdown.Item>Users</NavDropdown.Item>
+                        <NavDropdown.Item>Usuarios</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
                   )}
@@ -149,7 +150,7 @@ function App() {
             {categories.map((category) => (
               <Nav.Item key={category}>
                 <LinkContainer
-                  to={`/search?category=${category}`}
+                  to={`/search/category=${category}`}
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
@@ -174,6 +175,7 @@ function App() {
               <Route path="/orderhistory" element={<OrderHistoryScreen />}></Route>
               <Route path="/search"  element={<ProtectedRoute><OrderHistoryScreen /></ProtectedRoute>}/>
               <Route path="/admin/productos" element={<AdminRoute><ProductListScreen /></AdminRoute>}></Route>
+              <Route path="/admin/producto/:id" element={<AdminRoute><ProductEditScreen /></AdminRoute>}></Route>
               {/* Admin Routes */}
               <Route path="/admin/dashboard" element={<AdminRoute><DashboardScreen /></AdminRoute>}></Route>
             </Routes>

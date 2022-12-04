@@ -16,19 +16,19 @@ productRouter.post(
   empleado,
   expressAsyncHandler(async (req, res) => {
     const newProduct = new Producto({
-      nombre: 'sample name ' + Date.now(),
-      ficha: 'sample-name-' + Date.now(),
+      nombre: 'Escriba nombre del producto' + Date.now(),
+      ficha: '' + Date.now(),
       imagen: '/images/p1.jpg',
       precio: 0,
-      category: 'sample category',
-      marca: 'sample brand',
+      category: 'Escriba la categoria',
+      marca: 'Escribala marca',
       enInventario: 0,
       puntaje: 0,
       reviews: 0,
-      descripcion: 'sample description',
+      descripcion: 'Breve descripción',
     });
     const producto = await newProduct.save();
-    res.send({ message: 'Product Created', producto });
+    res.send({ message: 'Producto creado', producto });
   })
 );
 

@@ -120,6 +120,7 @@ export default function ProductListScreen() {
                 <th>Precio</th>
                 <th>Categoria</th>
                 <th>Marca</th>
+                <th>Acción</th>
               </tr>
             </thead>
             <tbody>
@@ -130,6 +131,15 @@ export default function ProductListScreen() {
                   <td>{producto.precio}</td>
                   <td>{producto.category}</td>
                   <td>{producto.marca}</td>
+                  <td>
+                    <Button
+                      type="button"
+                      variant="light"
+                      onClick={() => navigate(`/admin/producto/${producto._id}`)}
+                    >
+                      Editar
+                    </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
