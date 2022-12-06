@@ -32,6 +32,30 @@ productRouter.post(
   })
 );
 
+productRouter.put(
+  '/:id',
+  isAuth,
+  empleado,
+  expressAsyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    const producto = await Producto.findById(productId);
+    if (producto) {
+      producto.nombre = req.body.nombre;
+      producto.ficha = req.body.ficha;
+      producto.precio = req.body.precio;
+      producto.imagen = req.body.imagen;
+      producto.category = req.body.category;
+      producto.marca = req.body.marca;
+      producto.enInventario = req.body.enInventario;
+      producto.descripcion = req.body.descripcion;
+      await producto.save();
+      res.send({ message: 'Producto actualizado' });
+    } else {
+      res.status(404).send({ message: 'Producto no existe' });
+    }
+  })
+);
+
 const PAGE_SIZE = 3;
 
 productRouter.get(
